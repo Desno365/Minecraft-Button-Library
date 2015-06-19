@@ -52,10 +52,10 @@ function modTick()
 							}
 						});
 						squareButton.setText("B");
-						squareButton.setLayoutParams(new android.view.ViewGroup.LayoutParams(convertDpToPixels(squareButtonWidth), convertDpToPixels(squareButtonWidth)));
+						squareButton.setLayoutParams(new android.view.ViewGroup.LayoutParams(convertDpToPixel(squareButtonWidth), convertDpToPixel(squareButtonWidth)));
 
 						// POPUP FOR THE SECOND BUTTON
-						popup2 = new android.widget.PopupWindow(squareButton, convertDpToPixels(squareButtonWidth), convertDpToPixels(squareButtonWidth));
+						popup2 = new android.widget.PopupWindow(squareButton, convertDpToPixel(squareButtonWidth), convertDpToPixel(squareButtonWidth));
 						popup2.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
 						popup2.showAtLocation(currentActivity.getWindow().getDecorView(), android.view.Gravity.LEFT | android.view.Gravity.BOTTOM, 0, 0);
 					} catch(err)
@@ -99,13 +99,13 @@ function leaveGame()
 	} catch(e){ /*popup already dismissed*/ }
 }
 
-function convertDpToPixels(dp)
+function convertDpToPixel(dp)
 {
 	var metrics = new android.util.DisplayMetrics();
 	MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
 	var density = metrics.density;
 
-	return (dp * metrics.density);
+	return (dp * density);
 }
 
 
