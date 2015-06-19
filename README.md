@@ -5,7 +5,7 @@ This library is intendent to work only for Minecraft Pocket Edition mods, also k
 
 Version
 ---------
-1.2.0
+1.2.1
 
 Screenshots
 ---------
