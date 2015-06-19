@@ -114,7 +114,7 @@ function convertDpToPixel(dp)
 //########################################################################################################################################################
 
 
-// Library version: 1.2.0
+// Library version: 1.2.1
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
 
@@ -236,6 +236,7 @@ function MinecraftButton(enableSound)
 		button.setAllCaps(false);
 	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
 	button.setTag(false); // is pressed?
+	button..setSoundEffectsEnabled(false);
 	button.setGravity(android.view.Gravity.CENTER);
 	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
 	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
