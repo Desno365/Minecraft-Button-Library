@@ -63,24 +63,35 @@ function MinecraftButton(enableSound)
 		onTouch: function(v, motionEvent)
 		{
 			var action = motionEvent.getActionMasked();
+			if(action == android.view.MotionEvent.ACTION_DOWN)
+			{
+				// button pressed
+
+				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable);
+				button.setTextColor(android.graphics.Color.parseColor("#FFFBFF97"));
+				// make the effect of a pressed button with padding
+				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixel(2), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixel(2));
+			}
 			if(action == android.view.MotionEvent.ACTION_CANCEL || action == android.view.MotionEvent.ACTION_UP)
 			{
 				// button released
+
 				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
 				button.setTextColor(android.graphics.Color.parseColor("#FFDDDDDD"));
 				// reset pressed padding
 				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
 
-				// play sound
-				if(enableSound)
-					Level.playSoundEnt(Player.getEntity(), "random.click", 100, 30);
-			} else
-			{
-				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable);
-				button.setTextColor(android.graphics.Color.parseColor("#FFFBFF97"));
-				// make the effect of a pressed button
-				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixel(2), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixel(2));
+				var rect = new android.graphics.Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+		        if(rect.contains(v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY())) // detect if the event happens inside the view
+		        {
+		        	// onClick will run soon
+
+					// play sound
+					if(enableSound)
+						Level.playSoundEnt(Player.getEntity(), "random.click", 100, 30);
+				}
 			}
+
 			return false;
 		}
 	});
