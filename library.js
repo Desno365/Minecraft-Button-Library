@@ -1,5 +1,5 @@
-// Library version: 1.1.1
-// Made by Desno365
+// Library version: 1.2.0
+// Made by Dennis Motta, also known as Desno365
 
 /*
 	The MIT License (MIT)
@@ -69,29 +69,46 @@ function MinecraftButton(enableSound)
 			if(action == android.view.MotionEvent.ACTION_DOWN)
 			{
 				// button pressed
-
-				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable);
-				button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextPressedColor));
-				// make the effect of a pressed button with padding
-				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixel(2), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixel(2));
+				MinecraftButtonLibrary.changeToPressedState(v);
 			}
 			if(action == android.view.MotionEvent.ACTION_CANCEL || action == android.view.MotionEvent.ACTION_UP)
 			{
 				// button released
-
-				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
-				button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
-				// reset pressed padding
-				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
-
+				MinecraftButtonLibrary.changeToNormalState(v);
+				
 				var rect = new android.graphics.Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
-		        if(rect.contains(v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY())) // detect if the event happens inside the view
-		        {
-		        	// onClick will run soon
+				if(rect.contains(v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY())) // detect if the event happens inside the view
+				{
+					// onClick will run soon
 
 					// play sound
 					if(enableSound)
 						Level.playSoundEnt(Player.getEntity(), "random.click", 100, 30);
+				}
+			}
+			if(action == android.view.MotionEvent.ACTION_MOVE)
+			{
+				var rect = new android.graphics.Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
+				if(rect.contains(v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY())) // detect if the event happens inside the view
+				{
+					// pointer inside the view
+					if(v.getTag() == false)
+					{
+						// restore pressed state
+						button.setTag(true); // is pressed?
+
+						MinecraftButtonLibrary.changeToPressedState(v);
+					}
+				} else
+				{
+					// pointer outside the view
+					if(v.getTag() == true)
+					{
+						// restore pressed state
+						button.setTag(false); // is pressed?
+
+						MinecraftButtonLibrary.changeToNormalState(v);
+					}
 				}
 			}
 
@@ -101,6 +118,7 @@ function MinecraftButton(enableSound)
 	if (android.os.Build.VERSION.SDK_INT >= 14)
 		button.setAllCaps(false);
 	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
+	button.setTag(false); // is pressed?
 	button.setGravity(android.view.Gravity.CENTER);
 	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
 	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
@@ -133,6 +151,22 @@ MinecraftButtonLibrary.convertDpToPixel = function(dp)
 	return (dp * density);
 }
 
+MinecraftButtonLibrary.changeToNormalState = function(button)
+{
+	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
+	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
+	// reset pressed padding
+	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
+}
+
+MinecraftButtonLibrary.changeToPressedState = function(button)
+{
+	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable);
+	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextPressedColor));
+	// make the effect of a pressed button with padding
+	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixel(2), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixel(2));
+}
+
 // ######### END - BUTTON UTILS functions #########
 
 
@@ -146,7 +180,7 @@ MinecraftButtonLibrary.createNinePatchDrawables = function()
 	var mcNormalNinePatch = new android.graphics.NinePatch(mcButtonNormalBitmap, mcButtonNormalBitmap.getNinePatchChunk(), null);
 	var mcPressedNinePatch = new android.graphics.NinePatch(mcButtonPressedBitmap, mcButtonPressedBitmap.getNinePatchChunk(), null);
 
-	// we used a deprecated method that doesn't deals with density
+	// here is used a deprecated method that doesn't deals with density
 	//noinspection deprecation
 	MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable = new android.graphics.drawable.NinePatchDrawable(mcNormalNinePatch);
 	MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable.setFilterBitmap(false);
