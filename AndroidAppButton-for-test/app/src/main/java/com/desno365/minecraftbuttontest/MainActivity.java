@@ -87,14 +87,14 @@ public class MainActivity extends ActionBarActivity {
         setButtonBackground(tinyB, mcNormalNineDrawable);
         tinyB.setTextColor(android.graphics.Color.parseColor("#FFDDDDDD"));
         tinyB.setPadding(convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()));
-        tinyB.setLineSpacing(0, 1.15f);
+        tinyB.setLineSpacing(convertDpToPixel(4, getApplicationContext()), 1);
         // apply custom font with shadow
         tinyB.setTypeface(font);
         tinyB.setPaintFlags(tinyB.getPaintFlags() | android.graphics.Paint.SUBPIXEL_TEXT_FLAG);
         if (Build.VERSION.SDK_INT >= 19)
-            tinyB.setShadowLayer(1, Math.round(tinyB.getLineHeight() / 8), Math.round(tinyB.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+            tinyB.setShadowLayer(1, Math.round((tinyB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), Math.round((tinyB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), android.graphics.Color.parseColor("#FF292929"));
         else
-            tinyB.setShadowLayer(0.0001F, Math.round(tinyB.getLineHeight() / 8), Math.round(tinyB.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+            tinyB.setShadowLayer(0.0001F, Math.round((tinyB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), Math.round((tinyB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), android.graphics.Color.parseColor("#FF292929"));
 
 
 
@@ -126,14 +126,14 @@ public class MainActivity extends ActionBarActivity {
         setButtonBackground(bigB, mcNormalNineDrawable);
         bigB.setTextColor(android.graphics.Color.parseColor("#FFDDDDDD"));
         bigB.setPadding(convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()), convertDpToPixel(8, getApplicationContext()));
-        bigB.setLineSpacing(0, 1.15f);
+        bigB.setLineSpacing(convertDpToPixel(4, getApplicationContext()), 1);
         // apply custom font with shadow
         bigB.setTypeface(font);
         bigB.setPaintFlags(bigB.getPaintFlags() | android.graphics.Paint.SUBPIXEL_TEXT_FLAG);
         if (Build.VERSION.SDK_INT >= 19)
-            bigB.setShadowLayer(1, Math.round(bigB.getLineHeight() / 8), Math.round(bigB.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+            bigB.setShadowLayer(1, Math.round((bigB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), Math.round((bigB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), android.graphics.Color.parseColor("#FF292929"));
         else
-            bigB.setShadowLayer(0.0001F, Math.round(bigB.getLineHeight() / 8), Math.round(bigB.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+            bigB.setShadowLayer(0.0001F, Math.round((bigB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), Math.round((bigB.getLineHeight() - convertDpToPixel(4, getApplicationContext())) / 8), android.graphics.Color.parseColor("#FF292929"));
 
     }
 

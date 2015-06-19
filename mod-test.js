@@ -116,13 +116,40 @@ function convertDpToPixels(dp)
 //########################################################################################################################################################
 
 
+// Library version: 1.0.1
+// Made by Desno365
+
+/*
+	The MIT License (MIT)
+
+	Copyright (c) 2015 Dennis Motta 
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in all
+	copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+	SOFTWARE.
+*/
+
 var MinecraftButtonLibrary = {};
 
 // Customization
 // These are the default variables of the library, you can change them to make the buttons look how you want to.
 MinecraftButtonLibrary.defaultButtonPadding = 8;
 MinecraftButtonLibrary.defaultButtonTextSize = 16;
-MinecraftButtonLibrary.defaultLineSpacingMultiplier = 1.15;
+MinecraftButtonLibrary.defaultLineSpacing = 4;
 
 // Variables
 MinecraftButtonLibrary.Resources = {};
@@ -158,7 +185,7 @@ function MinecraftButton(enableSound)
 				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
 				button.setTextColor(android.graphics.Color.parseColor("#FFDDDDDD"));
 				// reset pressed padding
-				button.setPadding(MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding));
+				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
 
 				// play sound
 				if(enableSound)
@@ -168,7 +195,7 @@ function MinecraftButton(enableSound)
 				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable);
 				button.setTextColor(android.graphics.Color.parseColor("#FFFBFF97"));
 				// make the effect of a pressed button
-				button.setPadding(MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixels(2), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixels(2));
+				button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) + MinecraftButtonLibrary.convertDpToPixel(2), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding) - MinecraftButtonLibrary.convertDpToPixel(2));
 			}
 			return false;
 		}
@@ -177,15 +204,15 @@ function MinecraftButton(enableSound)
 		button.setAllCaps(false);
 	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
 	button.setTextColor(android.graphics.Color.parseColor("#FFDDDDDD"));
-	button.setPadding(MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixels(MinecraftButtonLibrary.defaultButtonPadding));
-	button.setLineSpacing(0, MinecraftButtonLibrary.defaultLineSpacingMultiplier);
+	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
+	button.setLineSpacing(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultLineSpacing), 1);
 	// apply custom font with shadow
 	button.setTypeface(MinecraftButtonLibrary.ProcessedResources.font);
 	button.setPaintFlags(button.getPaintFlags() | android.graphics.Paint.SUBPIXEL_TEXT_FLAG);
 	if (android.os.Build.VERSION.SDK_INT >= 19) // KitKat
-		button.setShadowLayer(1, Math.round(button.getLineHeight() / 8), Math.round(button.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+		button.setShadowLayer(1, Math.round((button.getLineHeight() - MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultLineSpacing)) / 8), Math.round((button.getLineHeight() - MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultLineSpacing)) / 8), android.graphics.Color.parseColor("#FF292929"));
 	else
-		button.setShadowLayer(0.0001, Math.round(button.getLineHeight() / 8), Math.round(button.getLineHeight() / 8), android.graphics.Color.parseColor("#FF292929"));
+		button.setShadowLayer(0.0001, Math.round((button.getLineHeight() - MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultLineSpacing)) / 8), Math.round((button.getLineHeight() - MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultLineSpacing)) / 8), android.graphics.Color.parseColor("#FF292929"));
 
 	return button;
 }
@@ -200,7 +227,7 @@ MinecraftButtonLibrary.setButtonBackground = function(button, background)
 		button.setBackgroundDrawable(background);
 }
 
-MinecraftButtonLibrary.convertDpToPixels = function(dp)
+MinecraftButtonLibrary.convertDpToPixel = function(dp)
 {
 	var metrics = new android.util.DisplayMetrics();
 	MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
