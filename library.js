@@ -1,5 +1,6 @@
 // Library version: 1.2.0
 // Made by Dennis Motta, also known as Desno365
+// https://github.com/Desno365/Minecraft-Button-Library
 
 /*
 	The MIT License (MIT)
