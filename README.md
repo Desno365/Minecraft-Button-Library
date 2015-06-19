@@ -19,7 +19,7 @@ Features
 
 Installation
 ---------
-As mentioned before, the installation is pretty easy, you just have to copy all the `library.js` code into your ModPE script.
+Copy the code of the `library.js` and paste it into your ModPE script.
 
 Example
 ---------
@@ -29,6 +29,8 @@ Just copy this link `https://raw.githubusercontent.com/Desno365/Minecraft-Button
 
 Upgrade
 ---------
+To upgrade your default Android button to the Minecraft buttons you just need to change this `var button1 = new android.widget.Button(context);` to this `var button1 = MinecraftButton();`
+
 Example of the code of the default Android button: 
 ```javascript
 var button1 = new android.widget.Button(com.mojang.minecraftpe.MainActivity.currentMainActivity.get());
