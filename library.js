@@ -28,7 +28,7 @@
 var MinecraftButtonLibrary = {};
 
 // Customization
-// These are the default variables of the library, you can change them to make the buttons look how you want to.
+// These are the default values of the library, you can change them to make the buttons look how you want to.
 MinecraftButtonLibrary.defaultButtonPadding = 8;
 MinecraftButtonLibrary.defaultButtonTextSize = 16;
 MinecraftButtonLibrary.defaultLineSpacing = 4;
@@ -38,6 +38,8 @@ MinecraftButtonLibrary.Resources = {};
 MinecraftButtonLibrary.ProcessedResources = {};
 
 MinecraftButtonLibrary.context = com.mojang.minecraftpe.MainActivity.currentMainActivity.get();
+MinecraftButtonLibrary.metrics = new android.util.DisplayMetrics();
+MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(MinecraftButtonLibrary.metrics);
 MinecraftButtonLibrary.sdcard = new android.os.Environment.getExternalStorageDirectory();
 MinecraftButtonLibrary.LOG_TAG = "Minecraft Button Library ";
 
@@ -61,7 +63,7 @@ function MinecraftButton(enableSound)
 		onTouch: function(v, motionEvent)
 		{
 			var action = motionEvent.getActionMasked();
-			if (action == android.view.MotionEvent.ACTION_CANCEL || action == android.view.MotionEvent.ACTION_UP)
+			if(action == android.view.MotionEvent.ACTION_CANCEL || action == android.view.MotionEvent.ACTION_UP)
 			{
 				// button released
 				MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
@@ -111,11 +113,9 @@ MinecraftButtonLibrary.setButtonBackground = function(button, background)
 
 MinecraftButtonLibrary.convertDpToPixel = function(dp)
 {
-	var metrics = new android.util.DisplayMetrics();
-	MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-	var density = metrics.density;
+	var density = MinecraftButtonLibrary.metrics.density;
 
-	return (dp * metrics.density);
+	return (dp * density);
 }
 
 // ######### END - BUTTON UTILS functions #########
@@ -142,9 +142,7 @@ MinecraftButtonLibrary.createNinePatchDrawables = function()
 
 MinecraftButtonLibrary.getMinecraftButtonBitmap = function()
 {
-	var metrics = new android.util.DisplayMetrics();
-	MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-	var density = metrics.density;
+	var density = MinecraftButtonLibrary.metrics.density;
 
 	if(density < 1)
 	{
@@ -178,9 +176,7 @@ MinecraftButtonLibrary.getMinecraftButtonBitmap = function()
 
 MinecraftButtonLibrary.getMinecraftButtonPressedBitmap = function()
 {
-	var metrics = new android.util.DisplayMetrics();
-	MinecraftButtonLibrary.context.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-	var density = metrics.density;
+	var density = MinecraftButtonLibrary.metrics.density;
 
 	if(density < 1)
 	{
