@@ -73,8 +73,11 @@ function modTick()
 			{
 				run: function()
 				{
-					popup1.dismiss();
-					popup2.dismiss();
+					try
+					{
+						popup1.dismiss();
+						popup2.dismiss();
+					} catch(e){ /*popup already dismissed*/ }
 				}
 			}));
 
@@ -85,18 +88,18 @@ function modTick()
 
 function leaveGame()
 {
-	try
+	currentActivity.runOnUiThread(new java.lang.Runnable(
 	{
-		currentActivity.runOnUiThread(new java.lang.Runnable(
+		run: function()
 		{
-			run: function()
+			try
 			{
 				popup1.dismiss();
 				popup2.dismiss();
-			}
-		}));
-		displayingPopup1 = false;
-	} catch(e){ /*popup already dismissed*/ }
+			} catch(e){ /*popup already dismissed*/ }
+		}
+	}));
+	displayingPopup1 = false;
 }
 
 function convertDpToPixel(dp)
