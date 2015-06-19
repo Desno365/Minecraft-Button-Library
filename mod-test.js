@@ -19,9 +19,6 @@ function modTick()
 					try
 					{
 						// FIRST BUTTON
-						var layout1 = new android.widget.RelativeLayout(currentActivity);
-						layout1.setLayoutParams(new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
-
 						var button1 = MinecraftButton(); // set to true or leave blank for click sound
 						button1.setOnClickListener(new android.view.View.OnClickListener()
 						{
@@ -34,9 +31,9 @@ function modTick()
 						});
 						button1.setText("I'm a button!");
 						button1.setLayoutParams(new android.view.ViewGroup.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT));
-						layout1.addView(button1);
 
-						popup1 = new android.widget.PopupWindow(layout1, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+						// POPUP FOR THE FIRST BUTTON
+						popup1 = new android.widget.PopupWindow(button1, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
 						popup1.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
 						popup1.showAtLocation(currentActivity.getWindow().getDecorView(), android.view.Gravity.RIGHT | android.view.Gravity.CENTER, 0, 0);
 
@@ -57,6 +54,7 @@ function modTick()
 						squareButton.setText("B");
 						squareButton.setLayoutParams(new android.view.ViewGroup.LayoutParams(convertDpToPixels(squareButtonWidth), convertDpToPixels(squareButtonWidth)));
 
+						// POPUP FOR THE SECOND BUTTON
 						popup2 = new android.widget.PopupWindow(squareButton, convertDpToPixels(squareButtonWidth), convertDpToPixels(squareButtonWidth));
 						popup2.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
 						popup2.showAtLocation(currentActivity.getWindow().getDecorView(), android.view.Gravity.LEFT | android.view.Gravity.BOTTOM, 0, 0);
