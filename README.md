@@ -25,7 +25,7 @@ Example
 ---------
 If you want to see how this library looks you can try the `mod-test.js`.<br>
 The test buttons are displayed when you hold the Iron Sword in the game.<br>
-Just copy this link `link` and paste it in BlockLauncher/Manage ModPE Scripts/Import/Web address.
+Just copy this link `https://raw.githubusercontent.com/Desno365/Minecraft-Button-Library/master/mod-test.js` and paste it in BlockLauncher/Manage ModPE Scripts/Import/Web address.
 
 Upgrade
 ---------
