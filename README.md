@@ -23,9 +23,9 @@ Copy the code of the `library.js` and paste it into your ModPE script.
 
 Example
 ---------
-If you want to see how this library looks you can try the `mod-test.js`.<br>
+If you want to see how this library looks you can try the `mod-test.js` script.<br>
 The test buttons are displayed when you hold the Iron Sword in the game.<br>
-Just copy this link `https://raw.githubusercontent.com/Desno365/Minecraft-Button-Library/master/mod-test.js` and paste it in BlockLauncher/Manage ModPE Scripts/Import/Web address.
+Just copy this link `https://raw.githubusercontent.com/Desno365/Minecraft-Button-Library/master/mod-test.js` and paste it in BlockLauncher --> Manage ModPE Scripts --> Import --> Web address.
 
 Upgrade
 ---------
