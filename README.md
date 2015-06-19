@@ -29,7 +29,7 @@ Just copy this link `https://raw.githubusercontent.com/Desno365/Minecraft-Button
 
 Upgrade
 ---------
-To upgrade your default Android button to the Minecraft buttons you just need to change this `var button1 = new android.widget.Button(context);` to this `var button1 = MinecraftButton();`
+To upgrade your default Android buttons to the Minecraft buttons you just need to change this `var button1 = new android.widget.Button(context);` to this `var button1 = MinecraftButton();`
 
 Example of the code of the default Android button: 
 ```javascript
