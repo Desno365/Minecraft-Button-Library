@@ -1,4 +1,4 @@
-// Library version: 1.2.1
+// Library version: 1.2.2
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
 
@@ -55,13 +55,15 @@ MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable = null;
 // LIBRARY
 //########################################################################################################################################################
 
-function MinecraftButton(enableSound)
+function MinecraftButton(textSize, enableSound)
 {
+	if(textSize == null)
+		textSize = MinecraftButtonLibrary.defaultButtonTextSize;
 	if(enableSound == null)
 		enableSound = true;
 
 	var button = new android.widget.Button(MinecraftButtonLibrary.context);
-	button.setTextSize(MinecraftButtonLibrary.defaultButtonTextSize);
+	button.setTextSize(textSize);
 	button.setOnTouchListener(new android.view.View.OnTouchListener()
 	{
 		onTouch: function(v, motionEvent)

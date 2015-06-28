@@ -1,11 +1,11 @@
 Minecraft Button Library for MCPE mods
 =========
 The Minecraft Button Library brings a nice Minecraft style for your buttons created with the android.widget.Button class.<br>
-This library is intendent to work only for Minecraft Pocket Edition mods, also known as ModPE Scripts.
+This library is intended to work only for Minecraft Pocket Edition mods, also known as ModPE Scripts.
 
 Version
 ---------
-1.2.1
+1.2.2
 
 Screenshots
 ---------
@@ -59,6 +59,13 @@ button1.setOnClickListener(new android.view.View.OnClickListener()
 	}
 });
 button1.setText("I'm a Minecraft button!");
+```
+
+Changelog
+---------
+```
+1.2.2:
+ - Changed arguments of the MinecraftButton() function to fix a bug where setTextSize caused bugs with shadows. Now the arguments are MinecraftButton(textSize, enableSound)
 ```
 
 Known bugs

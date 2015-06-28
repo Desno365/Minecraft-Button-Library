@@ -19,7 +19,7 @@ function modTick()
 					try
 					{
 						// FIRST BUTTON
-						var button1 = MinecraftButton(); // set to true or leave blank for click sound
+						var button1 = MinecraftButton(18, true); // (textSize, enableSound); Set enableSound to true or leave blank for click sound
 						button1.setOnClickListener(new android.view.View.OnClickListener()
 						{
 							onClick: function(v)
@@ -41,7 +41,7 @@ function modTick()
 
 						// SECOND BUTTON
 						var squareButtonWidth = 48; // in dp
-						var squareButton = MinecraftButton(false); // set to false for no click sound
+						var squareButton = MinecraftButton(null, false); // (textSize, enableSound); Set textSize to null for default text size. Set enableSound to false for no click sound
 						squareButton.setOnClickListener(new android.view.View.OnClickListener()
 						{
 							onClick: function(v)
@@ -117,7 +117,7 @@ function convertDpToPixel(dp)
 //########################################################################################################################################################
 
 
-// Library version: 1.2.1
+// Library version: 1.2.2
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
 
@@ -174,13 +174,15 @@ MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable = null;
 // LIBRARY
 //########################################################################################################################################################
 
-function MinecraftButton(enableSound)
+function MinecraftButton(textSize, enableSound)
 {
+	if(textSize == null)
+		textSize = MinecraftButtonLibrary.defaultButtonTextSize;
 	if(enableSound == null)
 		enableSound = true;
 
 	var button = new android.widget.Button(MinecraftButtonLibrary.context);
-	button.setTextSize(MinecraftButtonLibrary.defaultButtonTextSize);
+	button.setTextSize(textSize);
 	button.setOnTouchListener(new android.view.View.OnTouchListener()
 	{
 		onTouch: function(v, motionEvent)
