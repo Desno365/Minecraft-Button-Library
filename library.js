@@ -128,7 +128,7 @@ MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound)
 
 			// play sound
 			if(enableSound)
-				Level.playSoundEnt(Player.getEntity(), "random.click", 100, 30);
+				Level.playSoundEnt(Player.getEntity(), "random.click", 100, 0);
 		}
 	}
 	if(action == android.view.MotionEvent.ACTION_MOVE)
