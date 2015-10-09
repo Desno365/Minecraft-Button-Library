@@ -5,7 +5,7 @@ This library is intended to work only for Minecraft Pocket Edition mods, also kn
 
 Version
 ---------
-1.2.2
+1.2.3
 
 Screenshots
 ---------
@@ -64,8 +64,8 @@ button1.setText("I'm a Minecraft button!");
 Changelog
 ---------
 ```
-1.2.2:
- - Changed arguments of the MinecraftButton() function to fix a bug where setTextSize caused bugs with shadows. Now the arguments are MinecraftButton(textSize, enableSound)
+1.2.3:
+ - Added a new argument in the MinecraftButton() function to set a custom color for the button without changing the default color, now the arguments are MinecraftButton(int textSize, bool enableSound, String customTextColor)
 ```
 
 Known bugs

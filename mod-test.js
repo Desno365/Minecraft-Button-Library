@@ -117,7 +117,7 @@ function convertDpToPixel(dp)
 //########################################################################################################################################################
 
 
-// Library version: 1.2.2
+// Library version: 1.2.3
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
 
@@ -174,12 +174,16 @@ MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable = null;
 // LIBRARY
 //########################################################################################################################################################
 
-function MinecraftButton(textSize, enableSound)
+// MinecraftButton(int textSize, bool enableSound, string customTextColor)
+// set an argument null if you want to use the default value
+function MinecraftButton(textSize, enableSound, customTextColor)
 {
 	if(textSize == null)
 		textSize = MinecraftButtonLibrary.defaultButtonTextSize;
 	if(enableSound == null)
 		enableSound = true;
+	if(customTextColor == null)
+		customTextColor = MinecraftButtonLibrary.defaultButtonTextColor;
 
 	var button = new android.widget.Button(MinecraftButtonLibrary.context);
 	button.setTextSize(textSize);
@@ -187,7 +191,7 @@ function MinecraftButton(textSize, enableSound)
 	{
 		onTouch: function(v, motionEvent)
 		{
-			MinecraftButtonLibrary.onTouch(v, motionEvent, enableSound);
+			MinecraftButtonLibrary.onTouch(v, motionEvent, enableSound, customTextColor);
 			return false;
 		}
 	});
@@ -197,7 +201,7 @@ function MinecraftButton(textSize, enableSound)
 	button.setTag(false); // is pressed?
 	button.setSoundEffectsEnabled(false);
 	button.setGravity(android.view.Gravity.CENTER);
-	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
+	button.setTextColor(android.graphics.Color.parseColor(customTextColor));
 	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
 	button.setLineSpacing(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonTextLineSpacing), 1);
 	// apply custom font with shadow
@@ -227,7 +231,7 @@ MinecraftButtonLibrary.convertDpToPixel = function(dp)
 	return (dp * density);
 }
 
-MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound)
+MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound, customTextColor)
 {
 	var action = motionEvent.getActionMasked();
 	if(action == android.view.MotionEvent.ACTION_DOWN)
@@ -238,7 +242,7 @@ MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound)
 	if(action == android.view.MotionEvent.ACTION_CANCEL || action == android.view.MotionEvent.ACTION_UP)
 	{
 		// button released
-		MinecraftButtonLibrary.changeToNormalState(v);
+		MinecraftButtonLibrary.changeToNormalState(v, customTextColor);
 		
 		var rect = new android.graphics.Rect(v.getLeft(), v.getTop(), v.getRight(), v.getBottom());
 		if(rect.contains(v.getLeft() + motionEvent.getX(), v.getTop() + motionEvent.getY())) // detect if the event happens inside the view
@@ -271,16 +275,16 @@ MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound)
 				// restore pressed state
 				v.setTag(false); // is pressed?
 
-				MinecraftButtonLibrary.changeToNormalState(v);
+				MinecraftButtonLibrary.changeToNormalState(v, customTextColor);
 			}
 		}
 	}
 }
 
-MinecraftButtonLibrary.changeToNormalState = function(button)
+MinecraftButtonLibrary.changeToNormalState = function(button, customTextColor)
 {
 	MinecraftButtonLibrary.setButtonBackground(button, MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable);
-	button.setTextColor(android.graphics.Color.parseColor(MinecraftButtonLibrary.defaultButtonTextColor));
+	button.setTextColor(android.graphics.Color.parseColor(customTextColor));
 	// reset pressed padding
 	button.setPadding(MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding), MinecraftButtonLibrary.convertDpToPixel(MinecraftButtonLibrary.defaultButtonPadding));
 }
