@@ -5,7 +5,7 @@ This library is intended to work only for Minecraft Pocket Edition mods, also kn
 
 Version
 ---------
-1.2.3
+1.2.4
 
 Screenshots
 ---------
@@ -64,6 +64,9 @@ button1.setText("I'm a Minecraft button!");
 Changelog
 ---------
 ```
+1.2.4:
+ - Added the function MinecraftButtonLibrary.addMinecraftStyleToTextView(textview) that allows you to convert any TextView/TextView subclass (like the Switch class) to a Minecraft style
+
 1.2.3:
  - Added a new argument in the MinecraftButton() function to set a custom color for the button without changing the default color, now the arguments are MinecraftButton(int textSize, bool enableSound, String customTextColor)
 ```
