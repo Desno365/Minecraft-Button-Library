@@ -1,4 +1,4 @@
-// Library version: 1.2.4
+// Library version: 1.2.5
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
 
@@ -122,6 +122,11 @@ MinecraftButtonLibrary.convertDpToPixel = function(dp)
 
 MinecraftButtonLibrary.onTouch = function(v, motionEvent, enableSound, customTextColor)
 {
+	if(enableSound == null)
+		enableSound = true;
+	if(customTextColor == null)
+		customTextColor = MinecraftButtonLibrary.defaultButtonTextColor;
+	
 	var action = motionEvent.getActionMasked();
 	if(action == android.view.MotionEvent.ACTION_DOWN)
 	{
