@@ -1,3 +1,7 @@
+//########################################################################################################################################################
+// Minecraft Button Library
+//########################################################################################################################################################
+
 // Library version: 1.2.5
 // Made by Dennis Motta, also known as Desno365
 // https://github.com/Desno365/Minecraft-Button-Library
@@ -299,7 +303,7 @@ MinecraftButtonLibrary.writeFileFromByteArray = function(byteArray, path)
 {
 	var file = new java.io.File(path);
 	if(file.exists())
-		file.delete();
+		file['delete']();
 	file.createNewFile();
 	var stream = new java.io.FileOutputStream(file);
 	stream.write(byteArray);
@@ -337,11 +341,11 @@ MinecraftButtonLibrary.deleteFile = function(path)
 		{
 			deleteFile(directoryFiles[i].getAbsolutePath());
 		}
-		file.delete();
+		file['delete']();
 	}
 
 	if(file.isFile())
-		file.delete();
+		file['delete']();
 }
 // ######### END - UTILS functions #########
 
@@ -385,4 +389,5 @@ new java.lang.Thread(new java.lang.Runnable()
 		}
 	}
 }).start();
+
 
