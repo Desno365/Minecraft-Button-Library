@@ -5,7 +5,7 @@ This library is intended to work only for Minecraft Pocket Edition mods, also kn
 
 Version
 ---------
-1.2.4
+2.0.0
 
 Screenshots
 ---------
@@ -16,6 +16,7 @@ Features
   - Easy installation (you just have to copy the code of the library in your mod)
   - Easy upgrade from the default Android buttons to the Minecraft style button: only one line of code has to be changed
   - Works with every device, resolution and screen density!
+  - Support Texture Pack (NEW!)
 
 Installation
 ---------
@@ -64,23 +65,18 @@ button1.setText("I'm a Minecraft button!");
 Changelog
 ---------
 ```
+2.0.0:
+ - Support Texture Packs!
+ - Completely new engine to load the NinePatchDrawable
+
 1.2.4:
  - Added the function MinecraftButtonLibrary.addMinecraftStyleToTextView(textview) that allows you to convert any TextView/TextView subclass (like the Switch class) to a Minecraft style
-
-1.2.3:
- - Added a new argument in the MinecraftButton() function to set a custom color for the button without changing the default color, now the arguments are MinecraftButton(int textSize, bool enableSound, String customTextColor)
 ```
 
 Known bugs
 ---------
 No bugs found.<br>
 If you find one bug you can report it here on the Github repository. Just create a new issue and explain what the bug is.
-
-Missing features
----------
-Currently the Minecraft background image is NOT extracted from the Texture Pack.<br>
-So whatever Texture Pack you're using you'll always get the default Minecraft style of the button.
-
 
 License
 ---------
