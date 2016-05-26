@@ -5,7 +5,7 @@ This library is intended to work only for Minecraft Pocket Edition mods, also kn
 
 Version
 ---------
-2.0.0
+2.1.0
 
 Screenshots
 ---------
@@ -65,12 +65,13 @@ button1.setText("I'm a Minecraft button!");
 Changelog
 ---------
 ```
+2.1.0:
+ - Added a global option to disable padding animation when button is pressed
+ - Added a global option to change color of the shadow when the button is pressed
+
 2.0.0:
  - Support Texture Packs!
  - Completely new engine to load the NinePatchDrawable
-
-1.2.4:
- - Added the function MinecraftButtonLibrary.addMinecraftStyleToTextView(textview) that allows you to convert any TextView/TextView subclass (like the Switch class) to a Minecraft style
 ```
 
 Known bugs
