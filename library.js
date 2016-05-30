@@ -273,12 +273,12 @@ MinecraftButtonLibrary.createNinePatchBuffer = function(top, left, bottom, right
 	buffer.putInt(NO_COLOR);
 	buffer.putInt(NO_COLOR);
 	buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
-    buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
+	buffer.putInt(NO_COLOR);
 
 	return buffer;
 }
