@@ -328,8 +328,8 @@ MinecraftButtonLibrary.writeFileFromByteArray = function(byteArray, path)
 MinecraftButtonLibrary.getImageFromTexturePack = function(path)
 {
 	// note: throw error if the image wasn't found
-	var bytes = ModPE.getBytesFromTexturePack(path);
-	return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+	var inputStream = ModPE.openInputStreamFromTexturePack(path);
+	return android.graphics.BitmapFactory.decodeStream(inputStream);
 }
 
 MinecraftButtonLibrary.scaleBitmapToSize = function(image, width, height, filter)
@@ -377,9 +377,9 @@ new java.lang.Thread(new java.lang.Runnable()
 	{
 		try
 		{
+			MinecraftButtonLibrary.createTypeface();
 			MinecraftButtonLibrary.createButtonNormalNinePatch();
 			MinecraftButtonLibrary.createButtonPressedNinePatch();
-			MinecraftButtonLibrary.createTypeface();
 		} catch(e)
 		{
 			print("Error " + e);
