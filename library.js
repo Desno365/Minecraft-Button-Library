@@ -230,6 +230,7 @@ MinecraftButtonLibrary.changeToPressedState = function(button)
 // ######### CREATE NINE PATCH functions #########
 MinecraftButtonLibrary.createNinePatchFromRaw = function(bitmap, top, left, bottom, right)
 {
+	// top left bottom and right specify where the image to resized is, for example if you want to enlarge the square inside you have to put on top and left the pixel where it starts and on bottom and right where it finishes
 	var buffer = MinecraftButtonLibrary.createNinePatchBuffer(top, left, bottom, right);
 	return new android.graphics.drawable.NinePatchDrawable(MinecraftButtonLibrary.context.getResources(), bitmap, buffer.array(), new android.graphics.Rect(), "");
 }
@@ -239,25 +240,25 @@ MinecraftButtonLibrary.createNinePatchBuffer = function(top, left, bottom, right
 	// source https://gist.github.com/briangriffey/4391807
 
 	var NO_COLOR = 0x00000001;
-	var buffer = java.nio.ByteBuffer.allocate(84).order(java.nio.ByteOrder.nativeOrder());
+	var buffer = java.nio.ByteBuffer.allocate(84).order(java.nio.ByteOrder.nativeOrder()); // 84 = 8 * 8 + 20
 
-	//was translated
+	// was translated
 	buffer.put(0x01);
 
-	//divx size
+	// divx size
 	buffer.put(0x02);
 
-	//divy size
+	// divy size
 	buffer.put(0x02);
 
-	//color size
+	// color size
 	buffer.put(0x09);
 
-	//skip
+	// skip
 	buffer.putInt(0);
 	buffer.putInt(0);
 	
-	//padding
+	// padding
 	buffer.putInt(0);
 	buffer.putInt(0);
 	buffer.putInt(0);
@@ -270,6 +271,8 @@ MinecraftButtonLibrary.createNinePatchBuffer = function(top, left, bottom, right
 	buffer.putInt(right);
 	buffer.putInt(top);
 	buffer.putInt(bottom);
+
+	// as many as written in color size
 	buffer.putInt(NO_COLOR);
 	buffer.putInt(NO_COLOR);
 	buffer.putInt(NO_COLOR);
@@ -285,18 +288,18 @@ MinecraftButtonLibrary.createNinePatchBuffer = function(top, left, bottom, right
 
 MinecraftButtonLibrary.createButtonNormalNinePatch = function()
 {
-	var bitmap = android.graphics.Bitmap.createBitmap(MinecraftButtonLibrary.getImageFromTexturePack("images/gui/spritesheet.png"), 8, 32, 8, 8); // get only the correct image from the spritesheet
+	var bitmap = android.graphics.Bitmap.createBitmap(MinecraftButtonLibrary.getImageFromTexturePack("textures/gui/spritesheet.png"), 8, 32, 8, 8); // get only the correct image from the spritesheet
 	var scaledBitmap = MinecraftButtonLibrary.scaleBitmapToSize(bitmap, MinecraftButtonLibrary.convertDpToPixel(16), MinecraftButtonLibrary.convertDpToPixel(16)); // scale image to a bigger size and based on density
 
-	MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable = MinecraftButtonLibrary.createNinePatchFromRaw(scaledBitmap, MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(12), MinecraftButtonLibrary.convertDpToPixel(14)); // convert to NinePatch
+	MinecraftButtonLibrary.ProcessedResources.mcNormalNineDrawable = MinecraftButtonLibrary.createNinePatchFromRaw(scaledBitmap, MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(12), MinecraftButtonLibrary.convertDpToPixel(12)); // convert to NinePatch
 }
 
 MinecraftButtonLibrary.createButtonPressedNinePatch = function()
 {
-	var bitmap = android.graphics.Bitmap.createBitmap(MinecraftButtonLibrary.getImageFromTexturePack("images/gui/spritesheet.png"), 0, 32, 8, 8); // get only the correct image from the spritesheet
+	var bitmap = android.graphics.Bitmap.createBitmap(MinecraftButtonLibrary.getImageFromTexturePack("textures/gui/spritesheet.png"), 0, 32, 8, 8); // get only the correct image from the spritesheet
 	var scaledBitmap = MinecraftButtonLibrary.scaleBitmapToSize(bitmap, MinecraftButtonLibrary.convertDpToPixel(16), MinecraftButtonLibrary.convertDpToPixel(16)); // scale image to a bigger size and based on density
 
-	MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable = MinecraftButtonLibrary.createNinePatchFromRaw(scaledBitmap, MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(12), MinecraftButtonLibrary.convertDpToPixel(14)); // convert to NinePatch
+	MinecraftButtonLibrary.ProcessedResources.mcPressedNineDrawable = MinecraftButtonLibrary.createNinePatchFromRaw(scaledBitmap, MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(4), MinecraftButtonLibrary.convertDpToPixel(12), MinecraftButtonLibrary.convertDpToPixel(12)); // convert to NinePatch
 }
 // ######### END - CREATE NINE PATCH functions #########
 
